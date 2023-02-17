@@ -1,7 +1,11 @@
 pipeline {
     agent any
 
-    tools {nodejs "node16.9"}
+    tools {
+        nodejs "node16.9"
+        jdk "jdk_17"
+        maven "maven3.9.0"
+        }
 
     stages {
         stage("Clone code") {
