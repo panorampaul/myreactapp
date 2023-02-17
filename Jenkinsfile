@@ -18,6 +18,12 @@ pipeline {
             }
         }
 
+         stage('Java Home?') {
+            steps {
+                sh 'echo $JAVA_HOME'
+            }
+        }
+
         stage('Which MVN?') {
             steps {
                 sh 'mvn --version'
