@@ -17,6 +17,13 @@ pipeline {
             }
         }
 
+          stage('Read PULUMI_TOKEN from aws secrets') {
+            steps {
+                PULUMI_TOKEN = sh(returnStdout: true, script: 'aws secretsmanager get-secret-value --secret-id pulumi_devops_account_user_token')
+            }
+            echo "token is ${PULUMI_TOKEN}"
+        }
+
         stage("Clone code") {
             steps {
                 script {
@@ -68,12 +75,6 @@ pipeline {
             steps {
                 sh 'which kubectl'
                 //sh 'kubectl version' //this returns an error if not logged in
-            }
-        }
-
-        stage('Read Pulumi token from aws secrets') {
-            steps {
-                sh "aws secretsmanager get-secret-value --secret-id pulumi_devops_account_user_token"
             }
         }
 
