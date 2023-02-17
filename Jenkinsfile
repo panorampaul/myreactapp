@@ -20,11 +20,16 @@ pipeline {
           stage('Read PULUMI_TOKEN from aws secrets') {
             steps {
                 script {
-                    PULUMI_TOKEN = sh(returnStdout: true, script: 'aws secretsmanager get-secret-value --secret-id pulumi_devops_account_user_token')
+                    PULUMI_RESPONSE = sh(returnStdout: true, script: 'aws secretsmanager get-secret-value --secret-id pulumi_devops_account_user_token')
                 }
                 script {
-                    def secretData = readJSON text: PULUMI_TOKEN
+                    def props = readJSON text: PULUMI_RESPONSE
+                    PULUMI_ACCESS_TOKEN = props['SecretString']
                 }
+                script {
+                    sh "pulumi whoami"
+                }
+
             }
 
         }
