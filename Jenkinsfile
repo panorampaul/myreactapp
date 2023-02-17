@@ -26,12 +26,20 @@ pipeline {
                     def props = readJSON text: PULUMI_RESPONSE
                     PULUMI_ACCESS_TOKEN = props['SecretString']
                 }
-                script {
-                    sh "pulumi whoami"
-                }
-
             }
 
+        }
+
+        stage ("Pulumi whoami") {
+            steps {
+                // The value "node 16.15.0" is the configuration name in our Global Tool Configuration setup for node.
+                // You should use the name that you used when you added the installation on that page.
+                nodejs(nodeJSInstallationName: "node16.9") {
+                    withEnv(["PATH+PULUMI=$HOME/.pulumi/bin" ]) {
+                        sh "pulumi whoami"
+                    }
+                }
+            }
         }
 
         stage("Clone code") {
