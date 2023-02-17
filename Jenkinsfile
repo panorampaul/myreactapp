@@ -48,10 +48,17 @@ pipeline {
             }
         }
 
-         stage('Check aws') {
+        stage('Check aws') {
             steps {
                 sh 'which aws'
                 sh 'aws --version'
+            }
+        }
+
+        stage('Check kubectl') {
+            steps {
+                sh 'which kubectl'
+                sh 'kubectl version'
             }
         }
 
