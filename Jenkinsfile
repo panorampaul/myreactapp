@@ -9,6 +9,14 @@ pipeline {
         }
 
     stages {
+
+        stage ("Install Pulumi") {
+            steps {
+                sh "curl -fsSL https://get.pulumi.com | sh"
+                sh "$HOME/.pulumi/bin/pulumi version"
+            }
+        }
+
         stage("Clone code") {
             steps {
                 script {
