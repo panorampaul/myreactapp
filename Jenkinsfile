@@ -52,6 +52,7 @@ pipeline {
             steps {
                 sh 'which aws'
                 sh 'aws --version'
+                sh 'aws eks describe-cluster --name devstack-eksCluster-af87597'
             }
         }
 
