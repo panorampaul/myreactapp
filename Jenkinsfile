@@ -5,6 +5,7 @@ pipeline {
         nodejs "node16.9"
         jdk "jdk_17"
         maven "maven3.9.0"
+        docker "docker"
         }
 
     stages {
