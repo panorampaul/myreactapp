@@ -12,6 +12,18 @@ pipeline {
             }
         }
 
+        stage('Which Java?') {
+            steps {
+                sh 'java --version'
+            }
+        }
+
+        stage('Which MVN?') {
+            steps {
+                sh 'mvn --version'
+            }
+        }
+
         stage("npm install") {
             steps {
               sh "npm install"
