@@ -1,7 +1,7 @@
 pipeline {
     agent any
 
-    tools {nodejs "nodejs"}
+    tools {nodejs "node16.9"}
 
     stages {
         stage("Clone code") {
