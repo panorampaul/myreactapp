@@ -22,7 +22,9 @@ pipeline {
                 script {
                     PULUMI_TOKEN = sh(returnStdout: true, script: 'aws secretsmanager get-secret-value --secret-id pulumi_devops_account_user_token')
                 }
-                sh "echo ${PULUMI_TOKEN}"
+                script {
+                    def secretData = readJSON text: PULUMI_TOKEN
+                }
             }
 
         }
