@@ -71,5 +71,11 @@ pipeline {
             }
         }
 
+        stage('Read Pulumi token from aws secrets') {
+            steps {
+                sh "aws secretsmanager get-secret-value --secret-id pulumi_devops_account_user_token"
+            }
+        }
+
     }
 }
