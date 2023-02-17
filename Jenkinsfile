@@ -32,7 +32,7 @@ pipeline {
             }
         }
 
-         stage('Check Docker') {
+        stage('Check Docker') {
             steps {
                 sh 'which docker'
                 sh 'docker --version'
@@ -45,6 +45,13 @@ pipeline {
                 sh 'which npm'
                 sh 'node --version'
                 sh 'npm --version'
+            }
+        }
+
+         stage('Check aws') {
+            steps {
+                sh 'which aws'
+                sh 'aws --version'
             }
         }
 
