@@ -16,21 +16,27 @@ pipeline {
             }
         }
 
-        stage('Which Java?') {
+        stage('Check Java') {
             steps {
+                sh 'which java'
+                sh 'which javac'
                 sh 'java --version'
             }
         }
 
-         stage('Java Home?') {
+        stage('Check MVN') {
             steps {
-                sh 'echo $JAVA_HOME'
+                sh 'which mvn'
+                sh 'mvn --version'
             }
         }
 
-        stage('Which MVN?') {
+         stage('Check node/npm') {
             steps {
-                sh 'mvn --version'
+                sh 'which node'
+                sh 'which npm'
+                sh 'node --version'
+                sh 'npm --version'
             }
         }
 
