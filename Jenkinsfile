@@ -58,7 +58,7 @@ pipeline {
         stage('Check kubectl') {
             steps {
                 sh 'which kubectl'
-                sh 'kubectl version'
+                //sh 'kubectl version' //this returns an error if not logged in
             }
         }
 
