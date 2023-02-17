@@ -31,24 +31,19 @@ pipeline {
             }
         }
 
+         stage('Check Docker') {
+            steps {
+                sh 'which docker'
+                sh 'docker --version'
+            }
+        }
+
          stage('Check node/npm') {
             steps {
                 sh 'which node'
                 sh 'which npm'
                 sh 'node --version'
                 sh 'npm --version'
-            }
-        }
-
-        stage("npm install") {
-            steps {
-              sh "npm install"
-            }
-        }
-
-        stage("build") {
-            steps {
-              sh "npm run build"
             }
         }
 
