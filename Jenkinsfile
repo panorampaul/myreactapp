@@ -103,6 +103,7 @@ pipeline {
                 sh 'which eksctl'
                 sh 'eksctl version'
         }
+        }
 
     }
 }
