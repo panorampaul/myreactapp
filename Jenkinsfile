@@ -33,8 +33,6 @@ pipeline {
         stage ("Pulumi whoami") {
 
             steps {
-                // The value "node 16.15.0" is the configuration name in our Global Tool Configuration setup for node.
-                // You should use the name that you used when you added the installation on that page.
                 nodejs(nodeJSInstallationName: "node16.9") {
                     withEnv([
                         "PATH+PULUMI=$HOME/.pulumi/bin",
@@ -98,6 +96,12 @@ pipeline {
                 sh 'which kubectl'
                 //sh 'kubectl version' //this returns an error if not logged in
             }
+        }
+
+        stage('Check eksctl') {
+            steps {
+                sh 'which eksctl'
+                sh 'eksctl version'
         }
 
     }
